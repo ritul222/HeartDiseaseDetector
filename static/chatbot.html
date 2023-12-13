@@ -1,0 +1,77 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Chatbot</title>
+    <style>
+        body {
+            background-color: #b93b2c;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #chatter {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px;
+            color: #fff;
+        }
+        #logo {
+            width: 120px; /* Adjust the width as needed */
+            margin-right: 10px;
+            margin-left: 100px;
+        }
+        #chatty-text {
+            font-size: 20px;
+            color: #fff;
+            animation: slideIn 1s ease-in-out infinite;
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        iframe {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #home-link {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- <a href="index.html" id="home-link">&larr;</a> -->
+    <a href="{{ url_for('index') }}" id="home-link">&larr; Home</a>
+
+
+    <div id="chatter">
+        <img id="logo" src="chatbot-logo.png" alt="Logo">
+        <div id="chatty-text"><h1>Hii, I am chattur!</h1></div>
+    </div>
+
+    <iframe src="https://webchat.botframework.com/embed/healthbot-1zz7tup?s=htWCYeUM_-Y.rIJdDQRcmU1PNZ6dtU5zY0nMK80B7sW04RIJtTFGCZk" style="min-width: 300px; width: 80%; min-height: 400px;"></iframe>
+
+</body>
+</html>

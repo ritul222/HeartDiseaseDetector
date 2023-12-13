@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+   <style>
+  
+p.success {
+    color: green;
+    font-weight: bold;
+    font-size:30px;
+}
+
+/* Styling for warning message */
+p.warning {
+    color: orange;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+
+/* Styling for error message */
+p.error {
+    color: red;
+    font-weight: bold;
+}
+
+   </style>
+</head>
+<body>
+    <Header>
+    <h1>Heart Disease Prediction Result</h1>
+    </Header>
+        
+    {% if prediction_dt == 0 and prediction_rf == 0 %}
+        <p class="success">Congratulations! According to our predictions, it seems you don't have a heart disease. However, it's always a good idea to consult with a healthcare professional for a comprehensive assessment.</p>
+    {% elif prediction_dt == 1 or prediction_rf == 1 %}
+        <p class="warning">We recommend you to consult with a healthcare professional. Our prediction indicates a possibility of heart disease. It's essential to get yourself checked for a more accurate diagnosis.</p>
+    {% else %}
+        <p class="error">Unable to determine the prediction outcome. Please consult with a healthcare professional for a comprehensive assessment.</p>
+    {% endif %}
+    <footer>
+        <p>&copy; 2023 Health Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>

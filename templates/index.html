@@ -1,0 +1,84 @@
+
+
+
+
+
+
+ 
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Your Page Title</title>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Health Hub</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('static', filename='heart.html') }}">Heart Checkup</a></li>
+               
+                <li><a href="{{ url_for('static', filename='chatbot.html') }}">Chatbot</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="content">
+            <!-- Your existing content goes here -->
+            <p></p>
+        </div>
+
+        <div class="news-content">
+            <!-- Fetch and display news here -->
+        </div>
+    </main> 
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Health Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Replace 'YOUR_API_KEY' with your actual News API key
+            const apiKey = '70c81b288ac0435a863a7e6e2fd27f25';
+            const apiUrl = `https://newsapi.org/v2/everything?q=cancer heart health &apiKey=${apiKey}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const newsContent = document.querySelector('.news-content');
+
+                    // Check if the API request was successful
+                    if (data.status === 'ok') {
+                        // Iterate through articles and display them
+                        data.articles.forEach(article => {
+                            const articleElement = document.createElement('div');
+                            articleElement.innerHTML = `
+                                <h2>${article.title}</h2>
+                                <p>${article.description}</p>
+                                <a href="${article.url}" target="_blank">Read more</a>
+                                <hr>
+                            `;
+                            newsContent.appendChild(articleElement);
+                        });
+                    } else {
+                        // Display an error message if the API request fails
+                        newsContent.innerHTML = '<p>Error fetching news data</p>';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+</body>
+</html>
